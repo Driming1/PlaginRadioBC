@@ -27,11 +27,12 @@
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="0.8*"/>
+            <ColumnDefinition Width="85*"/>
+            <ColumnDefinition Width="471*"/>
+            <ColumnDefinition Width="444*"/>
         </Grid.ColumnDefinitions>
 
-        <Border Style="{StaticResource CustomBorderStyle}">
+        <Border Style="{StaticResource CustomBorderStyle}" Grid.ColumnSpan="2" Margin="5,5,5,5">
             <StackPanel>
                 <Grid>
                     <Grid.RowDefinitions>
@@ -72,7 +73,7 @@
             </StackPanel>
         </Border>
 
-        <Border Style="{StaticResource CustomBorderStyle}" Grid.Column="2">
+        <Border Style="{StaticResource CustomBorderStyle}" Grid.Column="2" Margin="5,5,5,5">
             <Grid Margin="20,10,20,10">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -106,7 +107,7 @@
             </Grid>
         </Border>
 
-        <Border Style="{StaticResource CustomBorderStyle}" Grid.Column="0" Grid.Row="2">
+        <Border Style="{StaticResource CustomBorderStyle}" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Margin="5,5,5,5">
             <Grid Margin="20,10,0,0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -154,6 +155,6 @@
 
             </Grid>
         </Border>
-        <Button Content="Calc sampling" Width="150" Height="50" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,10,10" Grid.Column="1" Grid.Row="2" Background="#007ACC"  Foreground="White"/>
+        <Button Content="Calc sampling" Width="150" Height="50" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,10,10" Grid.Column="2" Grid.Row="2" Background="#007ACC"  Foreground="White"/>
     </Grid>
 </Window>

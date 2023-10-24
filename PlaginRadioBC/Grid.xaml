@@ -6,11 +6,17 @@
         xmlns:local="clr-namespace:PlaginRadioBC"
         xmlns:helper="clr-namespace:PlaginRadioBC.Helpers.CustomStyles"
         mc:Ignorable="d"
-        Title="SAMPLING RESULT" d:DesignHeight="500" d:DesignWidth="1189" Height="500" Width="900" ResizeMode="NoResize">
+        Title="SAMPLING RESULT"  d:DesignHeight="500" d:DesignWidth="1189" Height="500" Width="900" ResizeMode="NoResize">
+    <!--Style="{StaticResource CustomWindowTitleStyle}"   Стиль для тайтла (Не закончен) Нужно менять поведение всего (Кнопка клоуз, хват и перенос и тд)-->
+
     <Window.DataContext>
         <local:MainWindowViewModel />
     </Window.DataContext>
+    
     <Window.Resources>
+        
+        
+        <!--Стили для Грида-->
         <Style x:Key="DataGridColumnHeaderStyle" TargetType="{x:Type DataGridColumnHeader}">
             <Setter Property="Background" Value="White"/>
             <Setter Property="Foreground" Value="Black"/>
@@ -37,7 +43,8 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
@@ -58,7 +65,7 @@
                     <ColumnDefinition Width="*"/>
 
                 </Grid.ColumnDefinitions>
-                <TextBlock Grid.Row="0"  Grid.Column="0" Text="Nova Sloboda" FontWeight="Bold" FontSize="20" Margin="20,10,0,0"/>
+                <TextBlock Grid.Row="0" VerticalAlignment="Center" Grid.Column="0" Text="Nova Sloboda" FontWeight="Bold" FontSize="24" Margin="20,10,0,0"/>
                 <StackPanel Style="{StaticResource CustomStackPanelStyle}"  Grid.Row="0" Grid.Column="1">
                     <helper:TitleValueControl Title="Заголовок" Value="Значение"/>
                 </StackPanel>
@@ -74,7 +81,8 @@
             </Grid>
         </StackPanel>
             
-        <DataGrid Grid.Row="1" x:Name="CustomDataGrid" AutoGenerateColumns="False" CanUserAddRows="False" ItemsSource="{Binding Data}" CellStyle="{StaticResource DataGridCellStyle}" ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle}">
+        <DataGrid Margin="0,15,0,0" Grid.Row="1" x:Name="CustomDataGrid" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" ItemsSource="{Binding Data}" 
+                  CellStyle="{StaticResource DataGridCellStyle}" ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle}">
             <DataGrid.Resources>
                 <DataTemplate x:Key="SelectAllHeaderTemplate">
                     <CheckBox IsChecked="{Binding IsAllSelected, RelativeSource={RelativeSource AncestorType=DataGrid}, Mode=TwoWay}" 
@@ -83,7 +91,7 @@
             </DataGrid.Resources>
 
             <DataGrid.Columns>
-                <DataGridCheckBoxColumn Header="Select" Binding="{Binding IsChecked}" Width="50"
+                <DataGridCheckBoxColumn Header="Select" Binding="{Binding IsChecked}" Width="50" IsReadOnly="False"
                         HeaderTemplate="{StaticResource SelectAllHeaderTemplate}" />
                 <DataGridTextColumn Header="ID" Binding="{Binding ID}" Width="Auto" />
                 <DataGridTextColumn Header="TABLE" Binding="{Binding Table}" Width="Auto" />
@@ -102,5 +110,28 @@
             </DataGrid.Columns>
         </DataGrid>
 
+        <StackPanel Grid.Row="2"  HorizontalAlignment="Left">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="140"/>
+                    <ColumnDefinition Width="140"/>
+
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Height="40" Content="Upload HTZ" Foreground="#4A5A6B"
+                Margin="5,0,5,0" 
+                Background="#F5F5F5" 
+                BorderBrush="#B0B0B0" 
+                BorderThickness="0.1"
+               >
+                </Button>
+                <Button Grid.Column="1" Height="40" Content="Calc sampling" Foreground="#4A5A6B"
+                Margin="5,0,5,0" 
+                Background="#F5F5F5" 
+                BorderBrush="#B0B0B0" 
+                BorderThickness="0.1"
+                >
+                </Button>
+            </Grid>
+        </StackPanel>
     </Grid>
 </Window>
