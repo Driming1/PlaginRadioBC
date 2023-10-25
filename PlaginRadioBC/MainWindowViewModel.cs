@@ -27,7 +27,7 @@ namespace PlaginRadioBC
             //_model = new TestModel() { State = 8, System = "BC", Digital = true, Freq_MHz = 100, Lat_Dec = 50.1823, Lon_Dec = 34.9823 };
             Data = new ObservableCollection<TestModel>();
             var random = new Random();
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 20; i++)
             {
                 Data.Add(new TestModel
                 {

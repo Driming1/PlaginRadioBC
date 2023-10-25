@@ -52,7 +52,7 @@
                     <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Text="NOVA Sloboda" FontWeight="Bold" FontSize="24" Margin="20,5,0,0"/>
 
                     <StackPanel Style="{StaticResource CustomStackPanelStyle}" Grid.Row="2" Grid.Column="0">
-                        <helper:TitleValueControl Title="Заголовок" Value="Значение"/>
+                        <helper:TitleValueControl Title="1 Заголовок" Value="1 Значение"/>
                     </StackPanel>
                     <StackPanel Style="{StaticResource CustomStackPanelStyle}" Grid.Row="2" Grid.Column="1">
                         <helper:TitleValueControl Title="Заголовок" Value="Значение" />
@@ -61,7 +61,7 @@
                         <helper:TitleValueControl Title="Заголовок" Value="Значение" />
                     </StackPanel>
                     <StackPanel Style="{StaticResource CustomStackPanelStyle}" Grid.Row="3" Grid.Column="0">
-                        <helper:TitleValueControl Title="Заголовок" Value="Значение" />
+                        <helper:TitleValueControl Title="4 Заголовок" Value=" 4 Значение" />
                     </StackPanel>
                     <StackPanel Style="{StaticResource CustomStackPanelStyle}" Grid.Row="3" Grid.Column="1">
                         <helper:TitleValueControl Title="Заголовок" Value="Значение" />
@@ -129,7 +129,7 @@
                 <CheckBox Grid.Row="1" Grid.Column="2" Style="{StaticResource ToggleSwitchStyle}" HorizontalAlignment="Right" Margin="0,0,5,0"/>
 
                 <TextBlock Grid.Row="2" Grid.Column="0" FontSize="14" Text="Select stations:" VerticalAlignment="Center"/>
-                <ComboBox Grid.Row="2" Grid.Column="1"  Style="{StaticResource CustomComboBoxStyle}" Grid.ColumnSpan="2" Margin="0,5,10,0" >
+                <ComboBox Grid.Row="2"  Width="220" HorizontalAlignment="Right" Grid.Column="1"  Style="{StaticResource CustomComboBoxStyle}" Grid.ColumnSpan="2" Margin="0,5,10,0" >
                     <ComboBoxItem Content="Option 1"/>
                     <ComboBoxItem Content="Option 2"/>
                     <ComboBoxItem Content="Option 3"/>
@@ -142,15 +142,15 @@
                     <TextBlock FontSize="14" Text="Max Distance:" VerticalAlignment="Center" Margin="5,0,0,0"/>
                 </StackPanel>
                 <StackPanel Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,5,0">
-                    <helper:ExtendedTextBox MinWidth="120" Text="54" Style="{StaticResource CustomTextBoxStyle}" PlaceholderText="km"/>
+                    <helper:ExtendedTextBox Width="220" Text="54" Style="{StaticResource CustomTextBoxStyle}" PlaceholderText="km"/>
                 </StackPanel>
 
-                <StackPanel Grid.Row="4" Grid.Column="0" Orientation="Horizontal" Margin="0,0,5,0">
+                <StackPanel Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="0,0,5,0">
                     <CheckBox Style="{StaticResource ToggleSwitchStyle}" HorizontalAlignment="Left"/>
                     <TextBlock FontSize="14" Text="Min. interface level" VerticalAlignment="Center"  Grid.ColumnSpan="3" Margin="5,0,0,0"/>
                 </StackPanel>
                 <StackPanel Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,5,0">
-                    <helper:ExtendedTextBox MinWidth="120" Text="54" Style="{StaticResource CustomTextBoxStyle}" PlaceholderText="dBmkV/m"/>
+                    <helper:ExtendedTextBox Width="220" Text="54" Style="{StaticResource CustomTextBoxStyle}" PlaceholderText="dBmkV/m"/>
                 </StackPanel>
 
             </Grid>
