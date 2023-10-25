@@ -36,8 +36,36 @@
             <Setter Property="BorderThickness" Value="0,0,1,1"/>
             <Setter Property="Padding" Value="5"/>
         </Style>
+        
+        <Style TargetType="DataGrid">
+            <Setter Property="FontFamily" Value="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Background" Value="#fafafa"/>
+            <Setter Property="RowBackground" Value="White"/>
+            <Setter Property="AlternatingRowBackground" Value="#f0f0f0"/>
+            <Setter Property="GridLinesVisibility" Value="All"/>
+            <Setter Property="HorizontalGridLinesBrush" Value="#f0f0f0"/>
+            <Setter Property="VerticalGridLinesBrush" Value="#f0f0f0"/>
+            <Setter Property="HeadersVisibility" Value="Column"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+        </Style>
 
-
+        <Style x:Key="CustomCheckBoxStyle" TargetType="CheckBox">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="CheckBox">
+                        <Border Background="Transparent" BorderBrush="#d9d9d9" BorderThickness="1" Width="16" Height="16" CornerRadius="2">
+                            <Path x:Name="CheckMark" Stretch="Fill" Stroke="#fff" StrokeThickness="2" Data="M 2,5 4,7 7,2" Visibility="Collapsed"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="CheckMark" Property="Visibility" Value="Visible"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Window.Resources>
     
     <Grid>
@@ -48,7 +76,7 @@
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="883"/>
         </Grid.ColumnDefinitions>
         
         <StackPanel Grid.Row="0" Orientation="Horizontal">
@@ -80,33 +108,62 @@
                 </StackPanel>
             </Grid>
         </StackPanel>
-            
-        <DataGrid Margin="0,15,0,0" Grid.Row="1" x:Name="CustomDataGrid" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" ItemsSource="{Binding Data}" 
-                  CellStyle="{StaticResource DataGridCellStyle}" ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle}">
+
+        <DataGrid Margin="0,15,0,0" Grid.Row="1" x:Name="CustomDataGrid" AutoGenerateColumns="False"  CanUserAddRows="False" ItemsSource="{Binding Data}" 
+          CellStyle="{StaticResource DataGridCellStyle}" 
+          ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle}"
+          FontFamily="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif"
+          FontSize="12"
+          Background="#fafafa"
+          RowBackground="White"
+          AlternatingRowBackground="#f0f0f0"
+          GridLinesVisibility="All"
+          HorizontalGridLinesBrush="#f0f0f0"
+          VerticalGridLinesBrush="#f0f0f0"
+          HeadersVisibility="Column"
+          BorderBrush="Transparent">
+
             <DataGrid.Resources>
                 <DataTemplate x:Key="SelectAllHeaderTemplate">
                     <CheckBox IsChecked="{Binding IsAllSelected, RelativeSource={RelativeSource AncestorType=DataGrid}, Mode=TwoWay}" 
-                  Command="{Binding DataContext.ToggleAllCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"/>
+                      Command="{Binding DataContext.ToggleAllCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                      Style="{StaticResource CustomCheckBoxStyle}" />
                 </DataTemplate>
+                <Style x:Key="CustomCheckBoxStyle" TargetType="CheckBox">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="CheckBox">
+                                <Border Background="Transparent" BorderBrush="#d9d9d9" BorderThickness="1" Width="16" Height="16" CornerRadius="2">
+                                    <Path x:Name="CheckMark" Stretch="Fill" Stroke="#fff" StrokeThickness="2" Data="M 2,5 4,7 7,2" Visibility="Collapsed"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsChecked" Value="True">
+                                        <Setter TargetName="CheckMark" Property="Visibility" Value="Visible"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
             </DataGrid.Resources>
 
             <DataGrid.Columns>
                 <DataGridCheckBoxColumn Header="Select" Binding="{Binding IsChecked}" Width="50" IsReadOnly="False"
                         HeaderTemplate="{StaticResource SelectAllHeaderTemplate}" />
-                <DataGridTextColumn Header="ID" Binding="{Binding ID}" Width="Auto" />
-                <DataGridTextColumn Header="TABLE" Binding="{Binding Table}" Width="Auto" />
-                <DataGridTextColumn Header="NAME" Binding="{Binding Name}" Width="Auto" />
-                <DataGridTextColumn Header="FREQ, MHz" Binding="{Binding FreqMHz}" Width="Auto" />
-                <DataGridTextColumn Header="CH" Binding="{Binding CH}" Width="Auto" />
-                <DataGridTextColumn Header="DIST, km" Binding="{Binding DistKm}" Width="Auto" />
-                <DataGridTextColumn Header="EIR dBW" Binding="{Binding EIRdBW}" Width="Auto" />
-                <DataGridTextColumn Header="HEFF, m" Binding="{Binding HeffM}" Width="Auto" />
-                <DataGridTextColumn Header="STATE" Binding="{Binding State}" Width="Auto" />
-                <DataGridTextColumn Header="SYS." Binding="{Binding Sys}" Width="Auto" />
-                <DataGridTextColumn Header="INTEREF, dBmkV/m" Binding="{Binding Interference}" Width="Auto" />
-                <DataGridTextColumn Header="VICTIM, dBmkV/m" Binding="{Binding Victim}" Width="Auto" />
-                <DataGridTextColumn Header="LON" Binding="{Binding Lon}" Width="Auto" />
-                <DataGridTextColumn Header="LAT" Binding="{Binding Lat}" Width="Auto" />
+                <DataGridTextColumn Header="ID" Binding="{Binding ID}" Width="Auto" IsReadOnly="True" />
+                <DataGridTextColumn Header="TABLE" Binding="{Binding Table}" Width="Auto" IsReadOnly="True"/>
+                <DataGridTextColumn Header="NAME" Binding="{Binding Name}" Width="Auto" IsReadOnly="True"/>
+                <DataGridTextColumn Header="FREQ, MHz" Binding="{Binding FreqMHz}" Width="Auto" IsReadOnly="True"/>
+                <DataGridTextColumn Header="CH" Binding="{Binding CH}" Width="Auto" IsReadOnly="True"/>
+                <DataGridTextColumn Header="DIST, km" Binding="{Binding DistKm}" Width="Auto" IsReadOnly="True"/>
+                <DataGridTextColumn Header="EIR dBW" Binding="{Binding EIRdBW}" Width="Auto" IsReadOnly="True" />
+                <DataGridTextColumn Header="HEFF, m" Binding="{Binding HeffM}" Width="Auto" IsReadOnly="True"/>
+                <DataGridTextColumn Header="STATE" Binding="{Binding State}" Width="Auto" IsReadOnly="True"/>
+                <DataGridTextColumn Header="SYS." Binding="{Binding Sys}" Width="Auto" IsReadOnly="True"/>
+                <DataGridTextColumn Header="INTEREF, dBmkV/m" Binding="{Binding Interference}" Width="Auto" IsReadOnly="True"/>
+                <DataGridTextColumn Header="VICTIM, dBmkV/m" Binding="{Binding Victim}" Width="Auto" IsReadOnly="True" />
+                <DataGridTextColumn Header="LON" Binding="{Binding Lon}" Width="Auto" IsReadOnly="True"/>
+                <DataGridTextColumn Header="LAT" Binding="{Binding Lat}" Width="Auto" IsReadOnly="True"/>
             </DataGrid.Columns>
         </DataGrid>
 
@@ -117,16 +174,17 @@
                     <ColumnDefinition Width="140"/>
 
                 </Grid.ColumnDefinitions>
-                <Button Grid.Column="0" Height="40" Content="Upload HTZ" Foreground="#4A5A6B"
+                <!--Цвет текста 3B6882                        Цвет Заднего фона EDF2F4-->
+                <Button Grid.Column="0" Height="40" Content="Upload HTZ" Foreground="#3B6882" 
                 Margin="5,0,5,0" 
-                Background="#F5F5F5" 
+                Background="#EDF2F4" 
                 BorderBrush="#B0B0B0" 
                 BorderThickness="0.1"
                >
                 </Button>
-                <Button Grid.Column="1" Height="40" Content="Calc sampling" Foreground="#4A5A6B"
+                <Button Grid.Column="1" Height="40" Content="Calc sampling" Foreground="#3B6882"
                 Margin="5,0,5,0" 
-                Background="#F5F5F5" 
+                Background="#EDF2F4" 
                 BorderBrush="#B0B0B0" 
                 BorderThickness="0.1"
                 >
