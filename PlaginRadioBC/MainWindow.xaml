@@ -48,8 +48,8 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                    <TextBlock Grid.Row="0" Text="Object" FontWeight="Bold" FontSize="20" Margin="20,10,0,0"/>
-                    <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Text="NOVA Sloboda" FontWeight="Bold" FontSize="24" Margin="20,5,0,0"/>
+                    <TextBlock Grid.Row="0" Text="Object" FontWeight="Bold" Foreground="#99A6AD" FontSize="16" Margin="20,10,0,0"/> <!--617581-->
+                    <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Foreground="#1E1E1E" Text="NOVA Sloboda" FontWeight="Medium" FontSize="28" Margin="20,5,0,0"/>
 
                     <StackPanel Style="{StaticResource CustomStackPanelStyle}" Grid.Row="2" Grid.Column="0">
                         <helper:TitleValueControl Title="1 Заголовок" Value="1 Значение"/>
@@ -86,7 +86,7 @@
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Text="PROPAGATION MODEL" FontWeight="Bold" FontSize="20"  Margin="0,10,0,0"/>
+                <TextBlock Text="PROPAGATION MODEL" FontWeight="Bold" FontSize="20" Foreground="#99A6AD" Margin="0,10,0,0"/>
 
                 <ComboBox Style="{StaticResource CustomComboBoxStyle}"  Grid.Row="1" Grid.ColumnSpan="2" Margin="0,5,0,10" Height="30">
                     <ComboBoxItem Content="Option 1"/>
@@ -98,10 +98,10 @@
 
 
 
-                <TextBlock Grid.Row="2" Grid.Column="0"  FontWeight="Bold" FontSize="15" Text="Terrain clearance ancle" VerticalAlignment="Center"/>
+                <TextBlock Grid.Row="2" Grid.Column="0"  FontWeight="Bold" FontSize="15" Text="Terrain clearance ancle" VerticalAlignment="Center" Foreground="#99A6AD"/>
                 <CheckBox  Grid.Row="2" Grid.Column="1"  Style="{StaticResource ToggleSwitchStyle}" Margin="0,5,0,0"/>
 
-                <TextBlock Grid.Row="3" Grid.Column="0"  FontWeight="Bold" FontSize="15" Text="Use effective heights from stations" VerticalAlignment="Center"/>
+                <TextBlock Grid.Row="3" Grid.Column="0"  FontWeight="Bold" FontSize="15" Text="Use effective heights from stations" VerticalAlignment="Center" Foreground="#99A6AD"/>
                 <CheckBox  Grid.Row="3" Grid.Column="1" Style="{StaticResource ToggleSwitchStyle}" Margin="0,5,0,0" />
 
             </Grid>
@@ -123,12 +123,12 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="CALCULATION RULES" FontWeight="Bold" FontSize="18" Margin="0,0,0,10"/>
+                <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="CALCULATION RULES" FontWeight="Bold" Foreground="#99A6AD" FontSize="16" Margin="0,0,0,10"/>
 
-                <TextBlock Grid.Row="1" Grid.Column="0" FontSize="14" Text="Account adjacent channels:" VerticalAlignment="Center"/>
+                <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" FontSize="14" Foreground="#667985" Text="Account adjacent channels:" VerticalAlignment="Center"/> 
                 <CheckBox Grid.Row="1" Grid.Column="2" Style="{StaticResource ToggleSwitchStyle}" HorizontalAlignment="Right" Margin="0,0,5,0"/>
 
-                <TextBlock Grid.Row="2" Grid.Column="0" FontSize="14" Text="Select stations:" VerticalAlignment="Center"/>
+                <TextBlock Grid.Row="2" Grid.Column="0" FontSize="14" Text="Select stations:" VerticalAlignment="Center" Foreground="#667985"/>
                 <ComboBox Grid.Row="2"  Width="220" HorizontalAlignment="Right" Grid.Column="1"  Style="{StaticResource CustomComboBoxStyle}" Grid.ColumnSpan="2" Margin="0,5,10,0" >
                     <ComboBoxItem Content="Option 1"/>
                     <ComboBoxItem Content="Option 2"/>
@@ -139,7 +139,7 @@
 
                 <StackPanel Grid.Row="3" Grid.Column="0" Orientation="Horizontal" Margin="0,0,5,0">
                     <CheckBox Style="{StaticResource ToggleSwitchStyle}" HorizontalAlignment="Left"/>
-                    <TextBlock FontSize="14" Text="Max Distance:" VerticalAlignment="Center" Margin="5,0,0,0"/>
+                    <TextBlock FontSize="14" Text="Max Distance:" VerticalAlignment="Center" Margin="5,0,0,0" Foreground="#667985"/>
                 </StackPanel>
                 <StackPanel Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,5,0">
                     <helper:ExtendedTextBox Width="220" Text="54" Style="{StaticResource CustomTextBoxStyle}" PlaceholderText="km"/>
@@ -147,7 +147,7 @@
 
                 <StackPanel Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="0,0,5,0">
                     <CheckBox Style="{StaticResource ToggleSwitchStyle}" HorizontalAlignment="Left"/>
-                    <TextBlock FontSize="14" Text="Min. interface level" VerticalAlignment="Center"  Grid.ColumnSpan="3" Margin="5,0,0,0"/>
+                    <TextBlock FontSize="14" Text="Min. interface level" VerticalAlignment="Center"  Grid.ColumnSpan="3" Margin="5,0,0,0" Foreground="#667985"/>
                 </StackPanel>
                 <StackPanel Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,5,0">
                     <helper:ExtendedTextBox Width="220" Text="54" Style="{StaticResource CustomTextBoxStyle}" PlaceholderText="dBmkV/m"/>
