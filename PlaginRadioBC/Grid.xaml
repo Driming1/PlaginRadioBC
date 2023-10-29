@@ -5,49 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PlaginRadioBC"
         xmlns:helper="clr-namespace:PlaginRadioBC.Helpers.CustomStyles"
+        xmlns:converters="clr-namespace:PlaginRadioBC.Helpers.Converters"
         mc:Ignorable="d"
         Title="SAMPLING RESULT"  d:DesignHeight="500" d:DesignWidth="1189" Height="500" Width="1200" ResizeMode="NoResize" FontFamily="Segoe UI">
-    <!--Style="{StaticResource CustomWindowTitleStyle}"   Стиль для тайтла (Не закончен) Нужно менять поведение всего (Кнопка клоуз, хват и перенос и тд)-->
-
     <Window.DataContext>
         <local:MainWindowViewModel />
     </Window.DataContext>
-    
+
     <Window.Resources>
-        <!-- Стиль для DataGrid -->
-       
-        <!-- Стиль для хедера DataGrid -->
-        <Style x:Key="DataGridColumnHeaderStyle" TargetType="{x:Type DataGridColumnHeader}">
-            <Setter Property="Background" Value="White"/>
-            <Setter Property="Foreground" Value="Black"/>
-            <Setter Property="HorizontalContentAlignment" Value="Center"/>
-            <Setter Property="VerticalContentAlignment" Value="Center"/>
-            <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="BorderBrush" Value="Black"/>
-            <Setter Property="BorderThickness" Value="0,0,1,0"/>
-            <Setter Property="Padding" Value="5"/>
-            <Setter Property="FontFamily" Value="Segoe UI"/>
-            <Setter Property="FontSize" Value="14"/>
-        </Style>
-
-        <!-- Стиль для ячеек DataGrid -->
-        <Style x:Key="DataGridCellStyle" TargetType="DataGridCell">
-            <Setter Property="Background" Value="White"/>
-            <Setter Property="Foreground" Value="Black"/>
-            <Setter Property="VerticalContentAlignment" Value="Center"/>
-            <Setter Property="HorizontalContentAlignment" Value="Center"/>
-            <Setter Property="BorderBrush" Value="LightGray"/>
-            <Setter Property="BorderThickness" Value="0,0,1,0"/>
-            <Setter Property="Padding" Value="5"/>
-        </Style>
-
-
-
-        <Style x:Key="CustomCheckBoxStyle" TargetType="CheckBox">
+        <!--<Style x:Key="CustomCheckBoxStyle" TargetType="CheckBox">
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="CheckBox">
-                        <Border Background="Transparent" BorderBrush="#d9d9d9" BorderThickness="1" Width="16" Height="16" CornerRadius="2">
+                        <Border Background="Transparent" BorderBrush="#d9d9d9" BorderThickness="1" Width="16" Height="16" CornerRadius="3">
                             <Path x:Name="CheckMark" Stretch="Fill" Stroke="#fff" StrokeThickness="2" Data="M 2,5 4,7 7,2" Visibility="Collapsed"/>
                         </Border>
                         <ControlTemplate.Triggers>
@@ -58,27 +28,10 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
-        </Style>
-        <Style x:Key="CustomDataGridStyle" TargetType="DataGrid">
-            <Setter Property="AutoGenerateColumns" Value="False"/>
-            <Setter Property="CanUserAddRows" Value="False"/>
-            <Setter Property="CellStyle" Value="{StaticResource DataGridCellStyle}"/>
-            <Setter Property="ColumnHeaderStyle" Value="{StaticResource DataGridColumnHeaderStyle}"/>
-            <Setter Property="FontFamily" Value="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif"/>
-            <Setter Property="FontSize" Value="12"/>
-            <Setter Property="Background" Value="#fafafa"/>
-            <Setter Property="RowBackground" Value="White"/>
-            <Setter Property="AlternatingRowBackground" Value="#f0f0f0"/>
-            <Setter Property="GridLinesVisibility" Value="Horizontal"/>
-            <Setter Property="HorizontalGridLinesBrush" Value="#f0f0f0"/>
-            <Setter Property="VerticalGridLinesBrush" Value="Transparent"/>
-            <Setter Property="HeadersVisibility" Value="Column"/>
-            <Setter Property="BorderBrush" Value="Transparent"/>
-            <Setter Property="RowHeight" Value="25"/>
-        </Style>
-
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        </Style>-->
     </Window.Resources>
-    
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -89,7 +42,7 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1188"/>
         </Grid.ColumnDefinitions>
-        
+
         <StackPanel Grid.Row="0" Orientation="Horizontal">
             <Grid>
                 <Grid.RowDefinitions>
@@ -104,7 +57,7 @@
                     <ColumnDefinition Width="*"/>
 
                 </Grid.ColumnDefinitions>
-                <TextBlock Grid.Row="0" VerticalAlignment="Center" Grid.Column="0" Text="Nova Sloboda" FontWeight="Bold" FontSize="24" Margin="20,10,0,0"/>
+                <TextBlock Grid.Row="0" VerticalAlignment="Center" Grid.Column="0" Foreground="#002033" Text="Nova Sloboda" FontWeight="Regular" FontSize="24" Margin="20,10,0,0"/>
                 <StackPanel Style="{StaticResource CustomStackPanelStyle}"  Grid.Row="0" Grid.Column="1">
                     <helper:TitleValueControl Title="Заголовок" Value="Значение"/>
                 </StackPanel>
@@ -119,41 +72,61 @@
                 </StackPanel>
             </Grid>
         </StackPanel>
+        <!--Style="{StaticResource CustomCheckBoxStyle}"-->
 
-        <DataGrid Margin="0,15,0,0" Grid.Row="1" x:Name="CustomDataGrid" Style="{StaticResource CustomDataGridStyle}" ItemsSource="{Binding Data}">
+        <DataGrid Margin="0,15,0,0" Grid.Row="1" x:Name="CustomDataGrid" ItemsSource="{Binding Data}" GridLinesVisibility="Vertical">
             <DataGrid.Resources>
                 <DataTemplate x:Key="SelectAllHeaderTemplate">
                     <CheckBox IsChecked="{Binding IsAllSelected, RelativeSource={RelativeSource AncestorType=DataGrid}, Mode=TwoWay}" 
                   Command="{Binding DataContext.ToggleAllCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
-                  Style="{StaticResource CustomCheckBoxStyle}" />
+                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </DataTemplate>
 
-                <Style x:Key="CustomCheckBoxStyle" TargetType="CheckBox">
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="CheckBox">
-                                <Border Background="Transparent" BorderBrush="#d9d9d9" BorderThickness="1" Width="16" Height="16" CornerRadius="2">
-                                    <Path x:Name="CheckMark" Stretch="Fill" Stroke="#fff" StrokeThickness="2" Data="M 2,5 4,7 7,2" Visibility="Collapsed"/>
-                                </Border>
-                                <ControlTemplate.Triggers>
-                                    <Trigger Property="IsChecked" Value="True">
-                                        <Setter TargetName="CheckMark" Property="Visibility" Value="Visible"/>
-                                    </Trigger>
-                                </ControlTemplate.Triggers>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="Padding" Value="0,10,0,10"/>
+                    <Setter Property="FontFamily" Value="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif"/>
+                    <Setter Property="Background" Value="White"/>
+                    <Setter Property="BorderThickness" Value="1"/>
+                    <Setter Property="FontWeight" Value="Bold"/>
+                    <Setter Property="FontSize" Value="15"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                    <Setter Property="VerticalContentAlignment" Value="Center"/>
                 </Style>
 
-                <Style TargetType="DataGridCell">
-                    <Setter Property="BorderBrush" Value="Black"/>
-                    <Setter Property="BorderThickness" Value="0,0,1,0"/>
+                <Style TargetType="DataGridRow">
+                    <Setter Property="Background" Value="White"/>
+                    <Setter Property="BorderBrush" Value="Gray"/>
+                    <Setter Property="FontSize" Value="14"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                    <Setter Property="VerticalContentAlignment" Value="Center"/>
+
+                    <Setter Property="FontFamily" Value="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif"/>
                 </Style>
+
+
             </DataGrid.Resources>
 
+            <DataGrid.RowStyle>
+                <Style TargetType="DataGridRow">
+                    <Setter Property="VerticalContentAlignment" Value="Center"/>
+                    <Setter Property="FontFamily" Value="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif"/>
+                </Style>
+            </DataGrid.RowStyle>
+            <DataGrid.CellStyle>
+                <Style TargetType="DataGridCell">
+                    <Setter Property="VerticalContentAlignment" Value="Center"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                </Style>
+            </DataGrid.CellStyle>
+
             <DataGrid.Columns>
+
                 <DataGridCheckBoxColumn Header="Select" Binding="{Binding IsChecked}" Width="50" IsReadOnly="False"
-                        HeaderTemplate="{StaticResource SelectAllHeaderTemplate}" />
+                        HeaderTemplate="{StaticResource SelectAllHeaderTemplate}">
+                    
+                </DataGridCheckBoxColumn>
+
+
                 <DataGridTextColumn Header="ID" Binding="{Binding ID}" Width="Auto" IsReadOnly="True" />
                 <DataGridTextColumn Header="TABLE" Binding="{Binding Table}" Width="Auto" IsReadOnly="True"/>
                 <DataGridTextColumn Header="NAME" Binding="{Binding Name}" Width="Auto" IsReadOnly="True"/>
@@ -171,23 +144,22 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <StackPanel Grid.Row="2" HorizontalAlignment="Right">
+        <StackPanel Grid.Row="2" HorizontalAlignment="Right"  Margin="5,0,10,0" >
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="140"/>
                     <ColumnDefinition Width="140"/>
 
                 </Grid.ColumnDefinitions>
-                <!--Цвет текста 3B6882                        Цвет Заднего фона EDF2F4-->
                 <Button Grid.Column="0" Height="40" Content="Upload HTZ" Foreground="#3B6882" 
-                Margin="5,0,5,0" 
+                Margin="5,5,5,5" 
                 Background="#EDF2F4" 
                 BorderBrush="#B0B0B0" 
                 BorderThickness="0.3"
                >
                 </Button>
                 <Button Grid.Column="1" Height="40" Content="Calc sampling" Foreground="#3B6882"
-                Margin="5,0,5,0" 
+                Margin="5,5,5,5" 
                 Background="#EDF2F4" 
                 BorderBrush="#B0B0B0" 
                 BorderThickness="0.3"

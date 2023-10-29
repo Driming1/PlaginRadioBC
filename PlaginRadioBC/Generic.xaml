@@ -88,6 +88,7 @@
         <Setter Property="Height" Value="60"/>
         <Setter Property="Background" Value="#F2F4F5"/>
         <Setter Property="Margin" Value="8"/>
+        
     </Style>
 
     <!-- Стиль для ToggleButton внутри ComboBox -->
