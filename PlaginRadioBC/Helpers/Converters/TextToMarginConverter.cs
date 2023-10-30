@@ -17,7 +17,7 @@ namespace PlaginRadioBC.Helpers.Converters
             if (string.IsNullOrEmpty(text))
                 return new Thickness(0, 0, 0, 0);
 
-            int marginValue = text.Length * 10;
+            int marginValue = text.Length * 11;
 
             return new Thickness(0, 0, marginValue, 0);
         }

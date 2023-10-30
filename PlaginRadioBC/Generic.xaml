@@ -150,6 +150,7 @@
                                         </ObjectAnimationUsingKeyFrames>
                                         <ColorAnimation Storyboard.TargetName="Switch" Storyboard.TargetProperty="Fill.Color" To="White" Duration="0:0:0.2"/>
                                         <ColorAnimation Storyboard.TargetName="Switch" Storyboard.TargetProperty="Stroke.Color" To="Green" Duration="0:0:0.2"/>
+                                        <!--24C38E-->
                                         <ColorAnimation Storyboard.TargetName="SwitchBorder" Storyboard.TargetProperty="BorderBrush.Color" To="Green" Duration="0:0:0.2"/>
                                         <ColorAnimation Storyboard.TargetName="SwitchBorder" Storyboard.TargetProperty="Background.Color" To="Green" Duration="0:0:0.2"/>
                                     </Storyboard>

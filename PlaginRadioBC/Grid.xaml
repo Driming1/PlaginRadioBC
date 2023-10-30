@@ -74,7 +74,7 @@
         </StackPanel>
         <!--Style="{StaticResource CustomCheckBoxStyle}"-->
 
-        <DataGrid Margin="0,15,0,0" Grid.Row="1" x:Name="CustomDataGrid" ItemsSource="{Binding Data}" GridLinesVisibility="Vertical">
+        <DataGrid Margin="0,15,0,0" Grid.Row="1" x:Name="CustomDataGrid" ItemsSource="{Binding Data}" HorizontalAlignment="Center" VerticalAlignment="Center" AutoGenerateColumns="False" GridLinesVisibility="Vertical">
             <DataGrid.Resources>
                 <DataTemplate x:Key="SelectAllHeaderTemplate">
                     <CheckBox IsChecked="{Binding IsAllSelected, RelativeSource={RelativeSource AncestorType=DataGrid}, Mode=TwoWay}" 
@@ -105,13 +105,6 @@
 
 
             </DataGrid.Resources>
-
-            <DataGrid.RowStyle>
-                <Style TargetType="DataGridRow">
-                    <Setter Property="VerticalContentAlignment" Value="Center"/>
-                    <Setter Property="FontFamily" Value="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif"/>
-                </Style>
-            </DataGrid.RowStyle>
             <DataGrid.CellStyle>
                 <Style TargetType="DataGridCell">
                     <Setter Property="VerticalContentAlignment" Value="Center"/>
