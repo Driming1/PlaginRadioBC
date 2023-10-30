@@ -122,7 +122,7 @@
         </Setter>
     </Style>
 
-    <!--Стиль для CheckBox-->
+    <!--Стиль для CheckBox Переключатель зеленый серый цвет-->
     <Style x:Key="ToggleSwitchStyle" TargetType="CheckBox">
         <Setter Property="Template">
             <Setter.Value>

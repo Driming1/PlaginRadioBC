@@ -13,7 +13,7 @@
     </Window.DataContext>
 
     <Window.Resources>
-        <!--<Style x:Key="CustomCheckBoxStyle" TargetType="CheckBox">
+        <Style x:Key="CustomCheckBoxStyle" TargetType="CheckBox">
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="CheckBox">
@@ -29,7 +29,8 @@
                 </Setter.Value>
             </Setter>
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
-        </Style>-->
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
     </Window.Resources>
 
     <Grid>
@@ -74,49 +75,175 @@
         </StackPanel>
         <!--Style="{StaticResource CustomCheckBoxStyle}"-->
 
-        <DataGrid Margin="0,15,0,0" Grid.Row="1" x:Name="CustomDataGrid" ItemsSource="{Binding Data}" HorizontalAlignment="Center" VerticalAlignment="Center" AutoGenerateColumns="False" GridLinesVisibility="Vertical">
+        <DataGrid Margin="0,15,0,0" Grid.Row="1" x:Name="CustomDataGrid" ItemsSource="{Binding Data}" HorizontalAlignment="Center" VerticalAlignment="Center"
+                  AutoGenerateColumns="False" GridLinesVisibility="Vertical" >
             <DataGrid.Resources>
                 <DataTemplate x:Key="SelectAllHeaderTemplate">
-                    <CheckBox IsChecked="{Binding IsAllSelected, RelativeSource={RelativeSource AncestorType=DataGrid}, Mode=TwoWay}" 
+                    <CheckBox Style="{StaticResource CustomCheckBoxStyle}" IsChecked="{Binding IsAllSelected, RelativeSource={RelativeSource AncestorType=DataGrid}, Mode=TwoWay}" 
                   Command="{Binding DataContext.ToggleAllCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
                    HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </DataTemplate>
 
-                <Style TargetType="DataGridColumnHeader">
-                    <Setter Property="Padding" Value="0,10,0,10"/>
-                    <Setter Property="FontFamily" Value="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif"/>
-                    <Setter Property="Background" Value="White"/>
-                    <Setter Property="BorderThickness" Value="1"/>
-                    <Setter Property="FontWeight" Value="Bold"/>
-                    <Setter Property="FontSize" Value="15"/>
-                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                    <Setter Property="VerticalContentAlignment" Value="Center"/>
+                <Style TargetType="DataGrid">
+                    <Setter Property="BorderBrush" Value="#CCD9E0" />
+                    <Setter Property="HorizontalGridLinesBrush" Value="#CCD9E0" />
+                    <Setter Property="VerticalGridLinesBrush" Value="#CCD9E0" />
+
+                    <Setter Property="RowStyle">
+                        <Setter.Value>
+                            <Style TargetType="DataGridRow">
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="Gray" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="CellStyle">
+                        <Setter.Value>
+                            <Style TargetType="DataGridCell">
+                                <Style.Triggers>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter Property="Background" Value="#ff66ccff" />
+                                        <Setter Property="BorderBrush" Value="Transparent" />
+                                        <Setter Property="Foreground" Value="Black" />
+                                    </Trigger>
+                                    <Trigger Property="IsFocused" Value="True">
+                                        <Setter Property="Background" Value="#ff66ccff" />
+                                        <Setter Property="BorderBrush" Value="Black" />
+                                        <Setter Property="BorderThickness" Value="1"/>
+                                        <Setter Property="Foreground" Value="Black" />
+                                    </Trigger>
+                                </Style.Triggers>
+                                <Setter Property="Padding" Value="4,3,4,3" />
+                                <Setter Property="BorderBrush" Value="Transparent"/>
+                                <Setter Property="BorderThickness" Value="1"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="DataGridCell">
+                                            <Border Padding="{TemplateBinding Padding}" 
+                                            BorderBrush="{TemplateBinding BorderBrush}"
+                                            BorderThickness="{TemplateBinding BorderThickness}"
+                                            Background="{TemplateBinding Background}">
+                                                <ContentPresenter />
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="FocusVisualStyle">
+                                    <Setter.Value>
+                                        <Style TargetType="Control">
+                                            <Setter Property="BorderBrush" Value="Transparent" />
+                                        </Style>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+                <Style x:Key="ScrollThumbs" TargetType="{x:Type Thumb}">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Thumb}">
+                                <Grid x:Name="Grid">
+                                    <Rectangle HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="Auto" Height="Auto" Fill="Transparent" />
+                                    <Border x:Name="Rectangle1" CornerRadius="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="Auto" Height="Auto" Background="{TemplateBinding Background}" />
+                                </Grid>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="Tag" Value="Horizontal">
+                                        <Setter TargetName="Rectangle1" Property="Width" Value="Auto" />
+                                        <Setter TargetName="Rectangle1" Property="Height" Value="7" />
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+                
+                <!--ScrollBars-->
+                <Style x:Key="{x:Type ScrollBar}" TargetType="{x:Type ScrollBar}">
+                    <Setter Property="Stylus.IsFlicksEnabled" Value="false" />
+                    <Setter Property="Foreground" Value="#B7CAD4" />
+                    <Setter Property="Background" Value="Transparent" />
+                    <Setter Property="Width" Value="8" />
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type ScrollBar}">
+                                <Grid x:Name="GridRoot" Width="8" Background="{TemplateBinding Background}">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="0.00001*" />
+                                    </Grid.RowDefinitions>
+                                    <Track x:Name="PART_Track" Grid.Row="0" IsDirectionReversed="true" Focusable="false">
+                                        <Track.Thumb>
+                                            <Thumb x:Name="Thumb" Background="{TemplateBinding Foreground}" Style="{DynamicResource ScrollThumbs}" />
+                                        </Track.Thumb>
+                                        <Track.IncreaseRepeatButton>
+                                            <RepeatButton x:Name="PageUp" Command="ScrollBar.PageDownCommand" Opacity="0" Focusable="false" />
+                                        </Track.IncreaseRepeatButton>
+                                        <Track.DecreaseRepeatButton>
+                                            <RepeatButton x:Name="PageDown" Command="ScrollBar.PageUpCommand" Opacity="0" Focusable="false" />
+                                        </Track.DecreaseRepeatButton>
+                                    </Track>
+                                </Grid>
+                                <ControlTemplate.Triggers>
+                                    <Trigger SourceName="Thumb" Property="IsMouseOver" Value="true">
+                                        <Setter Value="{DynamicResource ButtonSelectBrush}" TargetName="Thumb" Property="Background" />
+                                    </Trigger>
+                                    <Trigger SourceName="Thumb" Property="IsDragging" Value="true">
+                                        <Setter Value="{DynamicResource DarkBrush}" TargetName="Thumb" Property="Background" />
+                                    </Trigger>
+                                    <Trigger Property="IsEnabled" Value="false">
+                                        <Setter TargetName="Thumb" Property="Visibility" Value="Collapsed" />
+                                    </Trigger>
+                                    <Trigger Property="Orientation" Value="Horizontal">
+                                        <Setter TargetName="GridRoot" Property="LayoutTransform">
+                                            <Setter.Value>
+                                                <RotateTransform Angle="-90" />
+                                            </Setter.Value>
+                                        </Setter>
+                                        <Setter TargetName="PART_Track" Property="LayoutTransform">
+                                            <Setter.Value>
+                                                <RotateTransform Angle="-90" />
+                                            </Setter.Value>
+                                        </Setter>
+                                        <Setter Property="Width" Value="auto" />
+                                        <Setter Property="Height" Value="8"/>
+                                        <Setter TargetName="Thumb" Property="Tag" Value="Horizontal" />
+                                        <Setter TargetName="PageDown" Property="Command" Value="ScrollBar.PageLeftCommand" />
+                                        <Setter TargetName="PageUp" Property="Command" Value="ScrollBar.PageRightCommand" />
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
                 </Style>
 
-                <Style TargetType="DataGridRow">
-                    <Setter Property="Background" Value="White"/>
-                    <Setter Property="BorderBrush" Value="Gray"/>
-                    <Setter Property="FontSize" Value="14"/>
+
+                <Style x:Key="CustomElementCheckBoxStyle" TargetType="CheckBox">
                     <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                    <Setter Property="VerticalContentAlignment" Value="Center"/>
-
-                    <Setter Property="FontFamily" Value="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif"/>
+                    <Setter Property="VerticalAlignment" Value="Center"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="CheckBox">
+                                <Border Background="Transparent" BorderBrush="#d9d9d9" BorderThickness="1" Width="16" Height="16" CornerRadius="3">
+                                    <Path x:Name="CheckMark" Stretch="Fill" Stroke="#fff" StrokeThickness="2" Data="M 2,5 4,7 7,2" Visibility="Collapsed"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsChecked" Value="True">
+                                        <Setter TargetName="CheckMark" Property="Visibility" Value="Visible"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
                 </Style>
-
 
             </DataGrid.Resources>
-            <DataGrid.CellStyle>
-                <Style TargetType="DataGridCell">
-                    <Setter Property="VerticalContentAlignment" Value="Center"/>
-                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                </Style>
-            </DataGrid.CellStyle>
-
             <DataGrid.Columns>
 
-                <DataGridCheckBoxColumn Header="Select" Binding="{Binding IsChecked}" Width="50" IsReadOnly="False"
-                        HeaderTemplate="{StaticResource SelectAllHeaderTemplate}">
-                    
+                <DataGridCheckBoxColumn Header="Select" Binding="{Binding IsChecked}" Width="50" IsReadOnly="False" 
+                        HeaderTemplate="{StaticResource SelectAllHeaderTemplate}" ElementStyle="{StaticResource CustomElementCheckBoxStyle}">
                 </DataGridCheckBoxColumn>
 
 
